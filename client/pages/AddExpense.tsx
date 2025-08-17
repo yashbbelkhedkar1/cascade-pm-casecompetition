@@ -26,8 +26,17 @@ const AddExpense = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Add expense logic here
-    console.log("Adding expense:", { amount, category, subcategory, date, isRecurring, note });
+    addTransaction({
+      type: "expense",
+      title: `${category} Expense`,
+      category,
+      subcategory,
+      amount: parseFloat(amount),
+      date,
+      note,
+      isRecurring,
+      paymentMethod: "UPI" // Default for now
+    });
     navigate("/");
   };
 
