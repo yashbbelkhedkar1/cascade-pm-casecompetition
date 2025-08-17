@@ -53,19 +53,19 @@ const Dashboard = () => {
           <div className="flex gap-3">
             <Link
               to="/add-income"
-              className="flex-1 bg-green-500 hover:bg-green-600 text-white rounded-xl py-6 px-6 flex flex-col items-center justify-center gap-2 shadow-lg transition-colors"
+              className="flex-1 bg-green-500 hover:bg-green-600 active:bg-green-700 text-white rounded-xl py-5 sm:py-6 px-4 sm:px-6 flex flex-col items-center justify-center gap-2 shadow-lg transition-all touch-manipulation"
             >
               <Plus className="w-4 h-4" />
-              <span className="font-semibold text-base">Add Income</span>
+              <span className="font-semibold text-sm sm:text-base">Add Income</span>
             </Link>
             <Link
               to="/add-expense"
-              className="flex-1 bg-red-500 hover:bg-red-600 text-white rounded-xl py-6 px-6 flex flex-col items-center justify-center gap-2 shadow-lg transition-colors"
+              className="flex-1 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white rounded-xl py-5 sm:py-6 px-4 sm:px-6 flex flex-col items-center justify-center gap-2 shadow-lg transition-all touch-manipulation"
             >
               <Minus className="w-4 h-4" />
               <div className="text-center">
-                <div className="font-semibold text-base">Add</div>
-                <div className="font-semibold text-base">Expense</div>
+                <div className="font-semibold text-sm sm:text-base">Add</div>
+                <div className="font-semibold text-sm sm:text-base">Expense</div>
               </div>
             </Link>
           </div>
@@ -73,13 +73,13 @@ const Dashboard = () => {
 
         {/* Balance Card */}
         <div className="mb-6">
-          <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-5 sm:p-6 text-white shadow-lg">
             <div className="flex items-center justify-between">
-              <div>
+              <div className="min-w-0 flex-1">
                 <p className="text-blue-100 text-sm mb-1">Total Balance</p>
-                <p className="text-2xl font-bold">₹{balance.toFixed(2)}</p>
+                <p className="text-xl sm:text-2xl font-bold truncate">₹{balance.toFixed(2)}</p>
               </div>
-              <Wallet className="w-6 h-6 text-blue-100" />
+              <Wallet className="w-5 h-5 sm:w-6 sm:h-6 text-blue-100 flex-shrink-0 ml-3" />
             </div>
           </div>
         </div>
