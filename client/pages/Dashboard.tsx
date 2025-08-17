@@ -51,19 +51,22 @@ const Dashboard = () => {
         {/* Action Buttons */}
         <div className="py-4">
           <div className="flex gap-3">
-            <Link 
+            <Link
               to="/add-income"
-              className="flex-1 bg-green-500 hover:bg-green-600 text-white rounded-xl p-6 flex items-center justify-center gap-2 shadow-lg transition-colors"
+              className="flex-1 bg-green-500 hover:bg-green-600 text-white rounded-xl py-6 px-6 flex flex-col items-center justify-center gap-2 shadow-lg transition-colors"
             >
               <Plus className="w-4 h-4" />
-              <span className="font-semibold">Add Income</span>
+              <span className="font-semibold text-base">Add Income</span>
             </Link>
-            <Link 
+            <Link
               to="/add-expense"
-              className="flex-1 bg-red-500 hover:bg-red-600 text-white rounded-xl p-6 flex items-center justify-center gap-2 shadow-lg transition-colors"
+              className="flex-1 bg-red-500 hover:bg-red-600 text-white rounded-xl py-6 px-6 flex flex-col items-center justify-center gap-2 shadow-lg transition-colors"
             >
               <Minus className="w-4 h-4" />
-              <span className="font-semibold">Add Expense</span>
+              <div className="text-center">
+                <div className="font-semibold text-base">Add</div>
+                <div className="font-semibold text-base">Expense</div>
+              </div>
             </Link>
           </div>
         </div>
