@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Plus, Minus, TrendingUp, TrendingDown, Utensils, Bus, BookOpen, Home as HomeIcon, Target, BarChart3, User, Wallet } from "lucide-react";
+import { Plus, Minus, TrendingUp, TrendingDown, Utensils, Bus, BookOpen, Wallet } from "lucide-react";
+import BottomNavigation from "../components/BottomNavigation";
 
 const Dashboard = () => {
   // Mock data - will be replaced with state management
