@@ -40,11 +40,11 @@ const AddIncome = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white max-w-md mx-auto relative">
       {/* Header */}
       <div className="bg-indigo-500 px-4 py-6">
         <div className="flex items-center gap-4">
-          <Link to="/" className="text-white">
+          <Link to="/" className="text-white touch-manipulation">
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <h1 className="text-lg font-semibold text-white">Add Income</h1>
