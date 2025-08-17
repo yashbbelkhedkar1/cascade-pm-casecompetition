@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Calendar, ChevronDown, Upload } from "lucide-react";
+import { useTransactions } from "../context/TransactionContext";
 
 const AddIncome = () => {
   const navigate = useNavigate();
+  const { addTransaction } = useTransactions();
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [subcategory, setSubcategory] = useState("");
