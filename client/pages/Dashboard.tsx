@@ -67,7 +67,7 @@ const Dashboard = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-blue-100 text-sm mb-1">Total Balance</p>
-                <p className="text-2xl font-bold">${balance.toFixed(2)}</p>
+                <p className="text-2xl font-bold">₹{balance.toFixed(2)}</p>
               </div>
               <Wallet className="w-6 h-6 text-blue-100" />
             </div>
@@ -81,14 +81,14 @@ const Dashboard = () => {
               <TrendingUp className="w-3 h-3 text-green-500" />
               <span className="text-sm text-gray-600">Income (30d)</span>
             </div>
-            <p className="text-xl font-bold text-gray-900">${income}</p>
+            <p className="text-xl font-bold text-gray-900">₹{totalIncome.toFixed(0)}</p>
           </div>
           <div className="flex-1 bg-white rounded-xl p-4 shadow-sm border">
             <div className="flex items-center gap-2 mb-2">
               <TrendingDown className="w-3 h-3 text-red-500" />
               <span className="text-sm text-gray-600">Expense (30d)</span>
             </div>
-            <p className="text-xl font-bold text-gray-900">${expenses}</p>
+            <p className="text-xl font-bold text-gray-900">₹{totalExpenses.toFixed(0)}</p>
           </div>
         </div>
 
