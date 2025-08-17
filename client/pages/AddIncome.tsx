@@ -25,8 +25,17 @@ const AddIncome = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Add income logic here
-    console.log("Adding income:", { amount, category, subcategory, date, isRecurring, note });
+    addTransaction({
+      type: "income",
+      title: `${category} Income`,
+      category,
+      subcategory,
+      amount: parseFloat(amount),
+      date,
+      note,
+      isRecurring,
+      paymentMethod: "Bank Transfer" // Default for now
+    });
     navigate("/");
   };
 
