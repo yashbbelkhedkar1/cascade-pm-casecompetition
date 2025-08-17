@@ -1,72 +1,26 @@
 import { Link } from "react-router-dom";
-import { Plus, Minus, TrendingUp, TrendingDown, Utensils, Bus, BookOpen, Wallet } from "lucide-react";
+import { Plus, Minus, TrendingUp, TrendingDown, Utensils, Bus, BookOpen, Wallet, BarChart3 } from "lucide-react";
 import BottomNavigation from "../components/BottomNavigation";
+import { useTransactions } from "../context/TransactionContext";
 
 const Dashboard = () => {
-  // Mock data - will be replaced with state management
-  const balance = 2847.50;
-  const income = 3240;
-  const expenses = 1892;
+  const { balance, totalIncome, totalExpenses, getRecentTransactions } = useTransactions();
 
-  const recentExpenses = [
-    {
-      id: 1,
-      title: "Lunch at Cafe",
-      category: "Food & Dining",
-      amount: 25.50,
-      icon: Utensils,
-      iconBg: "bg-red-100",
-      iconColor: "text-red-600"
-    },
-    {
-      id: 2,
-      title: "Bus Ticket",
-      category: "Transportation",
-      amount: 5.00,
-      icon: Bus,
-      iconBg: "bg-blue-100",
-      iconColor: "text-blue-600"
-    },
-    {
-      id: 3,
-      title: "Textbook",
-      category: "Academic",
-      amount: 89.99,
-      icon: BookOpen,
-      iconBg: "bg-purple-100",
-      iconColor: "text-purple-600"
-    }
-  ];
+  const recentExpenses = getRecentTransactions("expense", 3);
+  const recentIncome = getRecentTransactions("income", 3);
 
-  const recentIncome = [
-    {
-      id: 1,
-      title: "Part-time Job",
-      category: "Employment",
-      amount: 850.00,
-      icon: Wallet,
-      iconBg: "bg-green-100",
-      iconColor: "text-green-600"
-    },
-    {
-      id: 2,
-      title: "Monthly Allowance",
-      category: "Financial Support",
-      amount: 500.00,
-      icon: TrendingUp,
-      iconBg: "bg-yellow-100",
-      iconColor: "text-yellow-600"
-    },
-    {
-      id: 3,
-      title: "Investment Returns",
-      category: "Investments",
-      amount: 125.50,
-      icon: BarChart3,
-      iconBg: "bg-indigo-100",
-      iconColor: "text-indigo-600"
-    }
-  ];
+  // Helper function to get icon based on category
+  const getCategoryIcon = (category: string) => {
+    const categoryMap: Record<string, any> = {
+      "Food & Dining": { icon: Utensils, bg: "bg-red-100", color: "text-red-600" },
+      "Transportation": { icon: Bus, bg: "bg-blue-100", color: "text-blue-600" },
+      "Academic": { icon: BookOpen, bg: "bg-purple-100", color: "text-purple-600" },
+      "Employment": { icon: Wallet, bg: "bg-green-100", color: "text-green-600" },
+      "Financial Support": { icon: TrendingUp, bg: "bg-yellow-100", color: "text-yellow-600" },
+      "Investments": { icon: BarChart3, bg: "bg-indigo-100", color: "text-indigo-600" },
+    };
+    return categoryMap[category] || { icon: Wallet, bg: "bg-gray-100", color: "text-gray-600" };
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
