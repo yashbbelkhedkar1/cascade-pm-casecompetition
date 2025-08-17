@@ -114,18 +114,22 @@ const Dashboard = () => {
             </div>
             
             <div className="space-y-3">
-              {recentExpenses.map((expense) => (
-                <div key={expense.id} className="flex items-center gap-3 p-2">
-                  <div className={`w-10 h-10 rounded-full ${expense.iconBg} flex items-center justify-center`}>
-                    <expense.icon className={`w-4 h-4 ${expense.iconColor}`} />
+              {recentExpenses.map((expense) => {
+                const categoryIcon = getCategoryIcon(expense.category);
+                const IconComponent = categoryIcon.icon;
+                return (
+                  <div key={expense.id} className="flex items-center gap-3 p-2">
+                    <div className={`w-10 h-10 rounded-full ${categoryIcon.bg} flex items-center justify-center`}>
+                      <IconComponent className={`w-4 h-4 ${categoryIcon.color}`} />
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-medium text-gray-900">{expense.title}</p>
+                      <p className="text-sm text-gray-600">{expense.category}</p>
+                    </div>
+                    <p className="font-semibold text-red-500">₹ {expense.amount}</p>
                   </div>
-                  <div className="flex-1">
-                    <p className="font-medium text-gray-900">{expense.title}</p>
-                    <p className="text-sm text-gray-600">{expense.category}</p>
-                  </div>
-                  <p className="font-semibold text-red-500">₹ {expense.amount}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
