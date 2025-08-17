@@ -23,22 +23,22 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 max-w-md mx-auto relative">
       {/* Header */}
-      <div className="bg-white shadow-sm px-6 py-5">
+      <div className="bg-white shadow-sm px-4 sm:px-6 py-5">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <button className="w-8 h-8 flex items-center justify-center">
+          <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
+            <button className="w-8 h-8 flex items-center justify-center flex-shrink-0">
               <div className="w-6 h-6 bg-gray-800 rounded-sm flex items-center justify-center">
                 <div className="w-4 h-0.5 bg-white rounded"></div>
               </div>
             </button>
-            <div>
-              <h1 className="text-xl font-bold text-gray-900">App Name</h1>
-              <p className="text-sm text-gray-600">Good morning, John!</p>
+            <div className="min-w-0 flex-1">
+              <h1 className="text-xl font-bold text-gray-900 truncate">App Name</h1>
+              <p className="text-sm text-gray-600 truncate">Good morning, John!</p>
             </div>
           </div>
-          <div className="w-9 h-9 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center relative">
+          <div className="w-9 h-9 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center relative flex-shrink-0">
             <span className="text-white text-sm font-medium">J</span>
             <div className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
               <div className="w-2 h-2 bg-white rounded-full"></div>
@@ -47,7 +47,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="px-4 pb-20">
+      <div className="px-4 pb-20 relative">
         {/* Action Buttons */}
         <div className="py-4">
           <div className="flex gap-3">
