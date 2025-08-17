@@ -25,17 +25,24 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow-sm px-6 py-4">
+      <div className="bg-white shadow-sm px-6 py-5">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gray-200 rounded-lg"></div>
+          <div className="flex items-center gap-4">
+            <button className="w-8 h-8 flex items-center justify-center">
+              <div className="w-6 h-6 bg-gray-800 rounded-sm flex items-center justify-center">
+                <div className="w-4 h-0.5 bg-white rounded"></div>
+              </div>
+            </button>
             <div>
               <h1 className="text-xl font-bold text-gray-900">App Name</h1>
               <p className="text-sm text-gray-600">Good morning, John!</p>
             </div>
           </div>
-          <div className="w-9 h-9 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+          <div className="w-9 h-9 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center relative">
             <span className="text-white text-sm font-medium">J</span>
+            <div className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+              <div className="w-2 h-2 bg-white rounded-full"></div>
+            </div>
           </div>
         </div>
       </div>
