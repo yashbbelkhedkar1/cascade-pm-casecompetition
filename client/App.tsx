@@ -4,6 +4,9 @@ import AddExpense from "./pages/AddExpense";
 import AddIncome from "./pages/AddIncome";
 import ExpenseHistory from "./pages/ExpenseHistory";
 import IncomeHistory from "./pages/IncomeHistory";
+import Goals from "./pages/Goals";
+import Analytics from "./pages/Analytics";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -16,6 +19,9 @@ function App() {
           <Route path="/add-income" element={<AddIncome />} />
           <Route path="/expense-history" element={<ExpenseHistory />} />
           <Route path="/income-history" element={<IncomeHistory />} />
+          <Route path="/goals" element={<Goals />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
