@@ -214,27 +214,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
-        <div className="flex items-center justify-around">
-          <Link to="/" className="flex flex-col items-center py-2 px-3">
-            <HomeIcon className="w-5 h-5 text-gray-400" />
-            <span className="text-xs text-gray-400 mt-1">Home</span>
-          </Link>
-          <div className="flex flex-col items-center py-2 px-3">
-            <Target className="w-5 h-5 text-indigo-500" />
-            <span className="text-xs text-indigo-500 mt-1">Goals</span>
-          </div>
-          <div className="flex flex-col items-center py-2 px-3">
-            <BarChart3 className="w-5 h-5 text-gray-400" />
-            <span className="text-xs text-gray-400 mt-1">Analytics</span>
-          </div>
-          <div className="flex flex-col items-center py-2 px-3">
-            <User className="w-5 h-5 text-gray-400" />
-            <span className="text-xs text-gray-400 mt-1">Profile</span>
-          </div>
-        </div>
-      </div>
+      <BottomNavigation />
     </div>
   );
 };
