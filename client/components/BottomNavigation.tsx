@@ -34,20 +34,20 @@ const BottomNavigation = () => {
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
           const IconComponent = item.icon;
-          
+
           return (
             <Link
               key={item.path}
               to={item.path}
-              className="flex flex-col items-center py-2 px-3 min-w-0"
+              className="flex flex-col items-center py-2 px-2 sm:px-3 min-w-0 flex-1 touch-manipulation"
             >
-              <IconComponent 
-                className={`w-5 h-5 ${
+              <IconComponent
+                className={`w-5 h-5 transition-colors ${
                   isActive ? 'text-indigo-500' : 'text-gray-400'
                 }`}
               />
-              <span 
-                className={`text-xs mt-1 ${
+              <span
+                className={`text-xs mt-1 transition-colors truncate ${
                   isActive ? 'text-indigo-500' : 'text-gray-400'
                 }`}
               >
