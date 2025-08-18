@@ -12,7 +12,7 @@ export default function MyPay() {
         onBackClick={() => navigate("/")}
       />
 
-      <div className="flex flex-col items-center justify-center px-6 pb-6">
+      <div className="flex flex-col items-center justify-center px-6 pb-6 pt-8">
         {/* Logo */}
       <div className="mb-8">
         <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
