@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Search, Filter, Utensils, Bus, ShoppingCart, Home as HomeIcon, Shirt } from "lucide-react";
+import Header from "../components/Header";
 
 const ExpenseHistory = () => {
   const [searchQuery, setSearchQuery] = useState("");
