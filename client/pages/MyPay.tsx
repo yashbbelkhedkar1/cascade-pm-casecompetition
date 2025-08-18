@@ -6,14 +6,11 @@ export default function MyPay() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
-      {/* Header with Back Button */}
-      <div className="flex items-center p-4">
-        <button onClick={() => navigate("/")} className="mr-3">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-      </div>
+      <Header
+        title="MyPay"
+        showBackButton={true}
+        onBackClick={() => navigate("/")}
+      />
 
       <div className="flex flex-col items-center justify-center px-6 pb-6">
         {/* Logo */}
