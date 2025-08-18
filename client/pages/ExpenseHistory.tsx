@@ -4,6 +4,7 @@ import { ArrowLeft, Search, Filter, Utensils, Bus, ShoppingCart, Home as HomeIco
 import Header from "../components/Header";
 
 const ExpenseHistory = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
   const expenses = [
