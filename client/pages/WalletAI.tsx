@@ -12,7 +12,7 @@ interface Message {
 
 export default function WalletAI() {
   const navigate = useNavigate();
-  const { transactions } = useTransactionContext();
+  const { transactions } = useTransactions();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
