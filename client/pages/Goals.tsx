@@ -1,4 +1,5 @@
 import BottomNavigation from "../components/BottomNavigation";
+import Header from "../components/Header";
 
 const Goals = () => {
   return (
