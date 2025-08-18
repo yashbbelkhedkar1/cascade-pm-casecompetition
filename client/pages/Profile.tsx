@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BottomNavigation from "../components/BottomNavigation";
+import Header from "../components/Header";
 
 const Profile = () => {
   const navigate = useNavigate();
