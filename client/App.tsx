@@ -65,6 +65,8 @@ function App() {
             <Route path="/loan-history" element={<LoanHistory />} />
             <Route path="/my-loans" element={<MyLoans />} />
             <Route path="/add-loan" element={<AddLoan />} />
+            <Route path="/fixed-income" element={<FixedIncome />} />
+            <Route path="/fixed-expense" element={<FixedExpense />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
