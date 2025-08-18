@@ -23,6 +23,12 @@ import SendMoney from "./pages/SendMoney";
 import RequestMoney from "./pages/RequestMoney";
 import WalletAI from "./pages/WalletAI";
 import PaymentReminders from "./pages/PaymentReminders";
+import LoanManagement from "./pages/LoanManagement";
+import LoanCategories from "./pages/LoanCategories";
+import EducationLoans from "./pages/EducationLoans";
+import LoanHistory from "./pages/LoanHistory";
+import MyLoans from "./pages/MyLoans";
+import AddLoan from "./pages/AddLoan";
 
 function App() {
   return (
