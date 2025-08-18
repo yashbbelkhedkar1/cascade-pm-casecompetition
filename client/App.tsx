@@ -29,6 +29,8 @@ import EducationLoans from "./pages/EducationLoans";
 import LoanHistory from "./pages/LoanHistory";
 import MyLoans from "./pages/MyLoans";
 import AddLoan from "./pages/AddLoan";
+import FixedIncome from "./pages/FixedIncome";
+import FixedExpense from "./pages/FixedExpense";
 
 function App() {
   return (
