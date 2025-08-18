@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Calendar, TrendingUp, BarChart3, Users } from "lucide-react";
 import BottomNavigation from "../components/BottomNavigation";
+import Header from "../components/Header";
 import { useTransactions } from "../context/TransactionContext";
 
 const Analytics = () => {
