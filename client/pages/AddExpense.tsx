@@ -43,15 +43,11 @@ const AddExpense = () => {
 
   return (
     <div className="min-h-screen bg-white max-w-md mx-auto relative">
-      {/* Header */}
-      <div className="bg-indigo-500 px-4 py-6">
-        <div className="flex items-center gap-4">
-          <Link to="/" className="text-white touch-manipulation">
-            <ArrowLeft className="w-4 h-4" />
-          </Link>
-          <h1 className="text-lg font-semibold text-white">Add Expense</h1>
-        </div>
-      </div>
+      <Header
+        title="Add Expense"
+        showBackButton={true}
+        onBackClick={() => navigate("/")}
+      />
 
       <form onSubmit={handleSubmit} className="flex flex-col h-[calc(100vh-80px)]">
         <div className="flex-1 px-4 py-6 space-y-6">
