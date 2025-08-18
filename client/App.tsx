@@ -57,6 +57,12 @@ function App() {
             <Route path="/request-money" element={<RequestMoney />} />
             <Route path="/wallet-ai" element={<WalletAI />} />
             <Route path="/payment-reminders" element={<PaymentReminders />} />
+            <Route path="/loan-management" element={<LoanManagement />} />
+            <Route path="/loan-categories" element={<LoanCategories />} />
+            <Route path="/education-loans" element={<EducationLoans />} />
+            <Route path="/loan-history" element={<LoanHistory />} />
+            <Route path="/my-loans" element={<MyLoans />} />
+            <Route path="/add-loan" element={<AddLoan />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
