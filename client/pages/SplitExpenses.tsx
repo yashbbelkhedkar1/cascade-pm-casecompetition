@@ -10,8 +10,18 @@ export default function SplitExpenses() {
 
   if (currentView === "landing") {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex flex-col items-center justify-center p-6">
-        {/* Logo */}
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+        {/* Header with Back Button */}
+        <div className="flex items-center p-4">
+          <button onClick={() => navigate("/")} className="mr-3">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="flex flex-col items-center justify-center px-6 pb-6">
+          {/* Logo */}
         <div className="mb-8">
           <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl flex items-center justify-center shadow-lg">
             <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,6 +86,7 @@ export default function SplitExpenses() {
         >
           Start Split
         </button>
+        </div>
       </div>
     );
   }
