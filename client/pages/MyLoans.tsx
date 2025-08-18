@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 interface Loan {
   id: string;
@@ -87,10 +88,9 @@ export default function MyLoans() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="flex items-center justify-between p-4">
-          <h1 className="text-xl font-semibold">My Loans</h1>
+      <Header
+        title="My Loans"
+        rightContent={
           <div className="flex items-center gap-2">
             <button className="p-2">
               <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -103,8 +103,8 @@ export default function MyLoans() {
               </svg>
             </button>
           </div>
-        </div>
-      </div>
+        }
+      />
 
       {/* Content */}
       <div className="p-4 space-y-4 pb-20">
