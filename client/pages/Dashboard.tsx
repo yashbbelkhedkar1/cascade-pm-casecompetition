@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Plus, Minus, TrendingUp, TrendingDown, Utensils, Bus, BookOpen, Wallet, BarChart3 } from "lucide-react";
 import BottomNavigation from "../components/BottomNavigation";
+import Header from "../components/Header";
 import { useTransactions } from "../context/TransactionContext";
 
 const Dashboard = () => {
