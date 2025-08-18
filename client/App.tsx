@@ -49,6 +49,8 @@ function App() {
             <Route path="/transaction-history" element={<TransactionHistory />} />
             <Route path="/send-money" element={<SendMoney />} />
             <Route path="/request-money" element={<RequestMoney />} />
+            <Route path="/wallet-ai" element={<WalletAI />} />
+            <Route path="/payment-reminders" element={<PaymentReminders />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
