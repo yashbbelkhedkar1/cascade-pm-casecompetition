@@ -80,20 +80,16 @@ const ExpenseHistory = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm px-4 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="text-gray-600">
-              <ArrowLeft className="w-4 h-4" />
-            </Link>
-            <h1 className="text-lg font-semibold text-gray-900">Expense History</h1>
-          </div>
+      <Header
+        title="Expense History"
+        showBackButton={true}
+        onBackClick={() => navigate("/")}
+        rightContent={
           <button className="text-gray-600">
             <Filter className="w-5 h-5" />
           </button>
-        </div>
-      </div>
+        }
+      />
 
       <div className="px-4 pb-20">
         {/* Search Bar */}
