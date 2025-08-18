@@ -4,12 +4,7 @@ import Header from "../components/Header";
 const Goals = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm px-6 py-4">
-        <div className="flex items-center justify-between">
-          <h1 className="text-xl font-bold text-gray-900">Goals</h1>
-        </div>
-      </div>
+      <Header title="Goals" />
 
       <div className="px-4 py-6 pb-20">
         <div className="text-center py-12">
