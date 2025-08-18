@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 export default function LoanCategories() {
   const navigate = useNavigate();
@@ -67,17 +68,16 @@ export default function LoanCategories() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="flex items-center justify-between p-4">
-          <h1 className="text-xl font-semibold">Loan Categories</h1>
+      <Header
+        title="Loan Categories"
+        rightContent={
           <button className="p-2">
             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5-5-5h5v-5a7.81 7.81 0 0 0-15 0v5" />
             </svg>
           </button>
-        </div>
-      </div>
+        }
+      />
 
       <div className="p-4">
         {/* Browse Categories Header */}

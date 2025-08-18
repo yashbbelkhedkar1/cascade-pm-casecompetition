@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { ArrowLeft, Search, Filter, Wallet, Monitor, TrendingUp, ShoppingBag, Gift } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Search, Filter, Wallet, Monitor, TrendingUp, ShoppingBag, Gift } from "lucide-react";
+import Header from "../components/Header";
 
 const IncomeHistory = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
   const incomes = [
@@ -78,20 +80,14 @@ const IncomeHistory = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm px-4 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="text-gray-600">
-              <ArrowLeft className="w-4 h-4" />
-            </Link>
-            <h1 className="text-lg font-semibold text-gray-900">Income History</h1>
-          </div>
+      <Header
+        title="Income History"
+        rightContent={
           <button className="p-2 rounded-lg border border-gray-200 bg-white">
             <Filter className="w-5 h-5 text-gray-600" />
           </button>
-        </div>
-      </div>
+        }
+      />
 
       <div className="px-4 pb-20">
         {/* Search Bar */}
