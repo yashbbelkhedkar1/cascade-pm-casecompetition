@@ -17,14 +17,14 @@ const BottomNavigation = () => {
       label: "Analytics"
     },
     {
+      path: "/wallet-ai",
+      icon: Bot,
+      label: "WalletAI"
+    },
+    {
       path: "/mypay",
       icon: CreditCard,
       label: "MyPay"
-    },
-    {
-      path: "/split-expenses",
-      icon: Users,
-      label: "Split"
     },
     {
       path: "/profile",
