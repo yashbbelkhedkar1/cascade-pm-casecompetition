@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Calendar, ChevronDown, Upload } from "lucide-react";
 import { useTransactions } from "../context/TransactionContext";
+import Header from "../components/Header";
 
 const AddExpense = () => {
   const navigate = useNavigate();
