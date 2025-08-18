@@ -12,10 +12,11 @@ const Analytics = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 max-w-md mx-auto relative">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-8 text-white">
+      <Header title="Analytics Dashboard" />
+
+      {/* Analytics Header Info */}
+      <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-6 text-white">
         <div className="text-center">
-          <h1 className="text-xl font-bold mb-2">Analytics Dashboard</h1>
           <p className="text-purple-100 text-sm">Track your financial insights</p>
           <p className="text-purple-100 text-sm">Jan 1 - Dec 31, 2024</p>
         </div>
