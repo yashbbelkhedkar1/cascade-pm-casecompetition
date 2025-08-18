@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Home, Target, BarChart3, User, CreditCard, Users } from "lucide-react";
+import { Home, Bot, BarChart3, User, CreditCard } from "lucide-react";
 
 const BottomNavigation = () => {
   const location = useLocation();
