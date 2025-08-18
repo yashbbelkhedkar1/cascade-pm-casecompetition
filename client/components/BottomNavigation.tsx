@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Home, Target, BarChart3, User } from "lucide-react";
+import { Home, Target, BarChart3, User, CreditCard, Users } from "lucide-react";
 
 const BottomNavigation = () => {
   const location = useLocation();
@@ -12,14 +12,19 @@ const BottomNavigation = () => {
       label: "Home"
     },
     {
-      path: "/goals",
-      icon: Target,
-      label: "Goals"
-    },
-    {
       path: "/analytics",
       icon: BarChart3,
       label: "Analytics"
+    },
+    {
+      path: "/mypay",
+      icon: CreditCard,
+      label: "MyPay"
+    },
+    {
+      path: "/split-expenses",
+      icon: Users,
+      label: "Split"
     },
     {
       path: "/profile",
