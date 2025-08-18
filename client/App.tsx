@@ -21,6 +21,8 @@ import SplitExpenses from "./pages/SplitExpenses";
 import TransactionHistory from "./pages/TransactionHistory";
 import SendMoney from "./pages/SendMoney";
 import RequestMoney from "./pages/RequestMoney";
+import WalletAI from "./pages/WalletAI";
+import PaymentReminders from "./pages/PaymentReminders";
 
 function App() {
   return (
