@@ -54,7 +54,10 @@ function App() {
             <Route path="/biometric-setup" element={<BiometricSetup />} />
             <Route path="/pin-entry" element={<PINEntry />} />
             <Route path="/split-expenses" element={<SplitExpenses />} />
-            <Route path="/transaction-history" element={<TransactionHistory />} />
+            <Route
+              path="/transaction-history"
+              element={<TransactionHistory />}
+            />
             <Route path="/send-money" element={<SendMoney />} />
             <Route path="/request-money" element={<RequestMoney />} />
             <Route path="/wallet-ai" element={<WalletAI />} />

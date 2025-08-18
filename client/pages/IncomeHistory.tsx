@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, Filter, Wallet, Monitor, TrendingUp, ShoppingBag, Gift } from "lucide-react";
+import {
+  Search,
+  Filter,
+  Wallet,
+  Monitor,
+  TrendingUp,
+  ShoppingBag,
+  Gift,
+} from "lucide-react";
 import Header from "../components/Header";
 
 const IncomeHistory = () => {
@@ -18,7 +26,7 @@ const IncomeHistory = () => {
       date: "Dec 1, 2024",
       icon: Wallet,
       iconBg: "bg-green-100",
-      iconColor: "text-green-600"
+      iconColor: "text-green-600",
     },
     {
       id: 2,
@@ -30,7 +38,7 @@ const IncomeHistory = () => {
       date: "Nov 28, 2024",
       icon: Monitor,
       iconBg: "bg-blue-100",
-      iconColor: "text-blue-600"
+      iconColor: "text-blue-600",
     },
     {
       id: 3,
@@ -42,7 +50,7 @@ const IncomeHistory = () => {
       date: "Nov 25, 2024",
       icon: TrendingUp,
       iconBg: "bg-purple-100",
-      iconColor: "text-purple-600"
+      iconColor: "text-purple-600",
     },
     {
       id: 4,
@@ -54,7 +62,7 @@ const IncomeHistory = () => {
       date: "Nov 22, 2024",
       icon: ShoppingBag,
       iconBg: "bg-orange-100",
-      iconColor: "text-orange-600"
+      iconColor: "text-orange-600",
     },
     {
       id: 5,
@@ -66,16 +74,17 @@ const IncomeHistory = () => {
       date: "Nov 20, 2024",
       icon: Gift,
       iconBg: "bg-pink-100",
-      iconColor: "text-pink-600"
-    }
+      iconColor: "text-pink-600",
+    },
   ];
 
   const totalIncome = 124500;
   const transactionCount = 142;
 
-  const filteredIncomes = incomes.filter(income =>
-    income.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    income.category.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredIncomes = incomes.filter(
+    (income) =>
+      income.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      income.category.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
@@ -109,11 +118,15 @@ const IncomeHistory = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Income</p>
-              <p className="text-2xl font-bold text-green-600">₹{totalIncome.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-green-600">
+                ₹{totalIncome.toLocaleString()}
+              </p>
             </div>
             <div className="text-right">
               <p className="text-sm text-gray-600">This Month</p>
-              <p className="text-lg font-semibold text-green-600">{transactionCount} transactions</p>
+              <p className="text-lg font-semibold text-green-600">
+                {transactionCount} transactions
+              </p>
             </div>
           </div>
         </div>
@@ -121,25 +134,36 @@ const IncomeHistory = () => {
         {/* Transactions List */}
         <div className="space-y-3">
           {filteredIncomes.map((income) => (
-            <div key={income.id} className="bg-white rounded-xl shadow-sm border p-4">
+            <div
+              key={income.id}
+              className="bg-white rounded-xl shadow-sm border p-4"
+            >
               <div className="flex items-start gap-3">
-                <div className={`w-8 h-8 rounded-full ${income.iconBg} flex items-center justify-center mt-1`}>
+                <div
+                  className={`w-8 h-8 rounded-full ${income.iconBg} flex items-center justify-center mt-1`}
+                >
                   <income.icon className={`w-4 h-4 ${income.iconColor}`} />
                 </div>
-                
+
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1">
                     <div>
-                      <h3 className="font-medium text-gray-900">{income.title}</h3>
+                      <h3 className="font-medium text-gray-900">
+                        {income.title}
+                      </h3>
                       <p className="text-sm text-gray-600">{income.category}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-lg font-bold text-green-600">₹{income.amount.toLocaleString()}</p>
+                      <p className="text-lg font-bold text-green-600">
+                        ₹{income.amount.toLocaleString()}
+                      </p>
                       <p className="text-xs text-gray-500">{income.date}</p>
                     </div>
                   </div>
-                  
-                  <p className="text-xs text-gray-400 mb-1">{income.description}</p>
+
+                  <p className="text-xs text-gray-400 mb-1">
+                    {income.description}
+                  </p>
                   <p className="text-sm text-gray-600">{income.note}</p>
                 </div>
               </div>
@@ -149,7 +173,9 @@ const IncomeHistory = () => {
 
         {filteredIncomes.length === 0 && (
           <div className="text-center py-8">
-            <p className="text-gray-500">No income found matching your search.</p>
+            <p className="text-gray-500">
+              No income found matching your search.
+            </p>
           </div>
         )}
       </div>

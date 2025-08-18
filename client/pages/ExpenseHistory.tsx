@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, Search, Filter, Utensils, Bus, ShoppingCart, Home as HomeIcon, Shirt } from "lucide-react";
+import {
+  ArrowLeft,
+  Search,
+  Filter,
+  Utensils,
+  Bus,
+  ShoppingCart,
+  Home as HomeIcon,
+  Shirt,
+} from "lucide-react";
 import Header from "../components/Header";
 
 const ExpenseHistory = () => {
@@ -18,7 +27,7 @@ const ExpenseHistory = () => {
       tag: "Dining",
       icon: Utensils,
       iconBg: "bg-red-100",
-      iconColor: "text-red-600"
+      iconColor: "text-red-600",
     },
     {
       id: 2,
@@ -30,7 +39,7 @@ const ExpenseHistory = () => {
       tag: "Vehicle",
       icon: Bus,
       iconBg: "bg-blue-100",
-      iconColor: "text-blue-600"
+      iconColor: "text-blue-600",
     },
     {
       id: 3,
@@ -42,7 +51,7 @@ const ExpenseHistory = () => {
       tag: "Weekly",
       icon: ShoppingCart,
       iconBg: "bg-green-100",
-      iconColor: "text-green-600"
+      iconColor: "text-green-600",
     },
     {
       id: 4,
@@ -54,7 +63,7 @@ const ExpenseHistory = () => {
       tag: "Monthly",
       icon: HomeIcon,
       iconBg: "bg-purple-100",
-      iconColor: "text-purple-600"
+      iconColor: "text-purple-600",
     },
     {
       id: 5,
@@ -66,16 +75,17 @@ const ExpenseHistory = () => {
       tag: "Fashion",
       icon: Shirt,
       iconBg: "bg-orange-100",
-      iconColor: "text-orange-600"
-    }
+      iconColor: "text-orange-600",
+    },
   ];
 
   const totalExpenses = 24580;
   const transactionCount = 142;
 
-  const filteredExpenses = expenses.filter(expense =>
-    expense.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    expense.category.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredExpenses = expenses.filter(
+    (expense) =>
+      expense.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      expense.category.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
@@ -111,11 +121,15 @@ const ExpenseHistory = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Expenses</p>
-              <p className="text-2xl font-bold text-gray-900">₹{totalExpenses.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-gray-900">
+                ₹{totalExpenses.toLocaleString()}
+              </p>
             </div>
             <div className="text-right">
               <p className="text-sm text-gray-600">This Month</p>
-              <p className="text-lg font-semibold text-green-600">{transactionCount} transactions</p>
+              <p className="text-lg font-semibold text-green-600">
+                {transactionCount} transactions
+              </p>
             </div>
           </div>
         </div>
@@ -123,23 +137,36 @@ const ExpenseHistory = () => {
         {/* Transactions List */}
         <div className="space-y-3">
           {filteredExpenses.map((expense) => (
-            <div key={expense.id} className="bg-white rounded-xl shadow-sm border p-4">
+            <div
+              key={expense.id}
+              className="bg-white rounded-xl shadow-sm border p-4"
+            >
               <div className="flex items-center gap-3">
-                <div className={`w-10 h-10 rounded-full ${expense.iconBg} flex items-center justify-center`}>
+                <div
+                  className={`w-10 h-10 rounded-full ${expense.iconBg} flex items-center justify-center`}
+                >
                   <expense.icon className={`w-5 h-5 ${expense.iconColor}`} />
                 </div>
-                
+
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1">
-                    <h3 className="font-medium text-gray-900">{expense.title}</h3>
+                    <h3 className="font-medium text-gray-900">
+                      {expense.title}
+                    </h3>
                     <div className="text-right">
-                      <p className="font-semibold text-gray-900">₹{expense.amount.toLocaleString()}</p>
-                      <p className="text-xs text-gray-500">{expense.paymentMethod}</p>
+                      <p className="font-semibold text-gray-900">
+                        ₹{expense.amount.toLocaleString()}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {expense.paymentMethod}
+                      </p>
                     </div>
                   </div>
-                  
-                  <p className="text-sm text-gray-600 mb-2">{expense.category}</p>
-                  
+
+                  <p className="text-sm text-gray-600 mb-2">
+                    {expense.category}
+                  </p>
+
                   <div className="flex items-center justify-between">
                     <p className="text-xs text-gray-500">{expense.date}</p>
                     <span className="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded-full">
@@ -154,7 +181,9 @@ const ExpenseHistory = () => {
 
         {filteredExpenses.length === 0 && (
           <div className="text-center py-8">
-            <p className="text-gray-500">No expenses found matching your search.</p>
+            <p className="text-gray-500">
+              No expenses found matching your search.
+            </p>
           </div>
         )}
       </div>

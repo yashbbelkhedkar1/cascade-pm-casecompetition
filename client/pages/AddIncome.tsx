@@ -21,7 +21,7 @@ const AddIncome = () => {
     "Financial Support",
     "Gift",
     "Freelance",
-    "Other"
+    "Other",
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -35,7 +35,7 @@ const AddIncome = () => {
       date,
       note,
       isRecurring,
-      paymentMethod: "Bank Transfer" // Default for now
+      paymentMethod: "Bank Transfer", // Default for now
     });
     navigate("/");
   };
@@ -48,11 +48,16 @@ const AddIncome = () => {
         onBackClick={() => navigate("/")}
       />
 
-      <form onSubmit={handleSubmit} className="flex flex-col h-[calc(100vh-80px)]">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col h-[calc(100vh-80px)]"
+      >
         <div className="flex-1 px-4 py-6 space-y-6">
           {/* Amount Input */}
           <div className="text-center py-4">
-            <label className="block text-sm text-gray-600 mb-2">Enter Amount</label>
+            <label className="block text-sm text-gray-600 mb-2">
+              Enter Amount
+            </label>
             <div className="flex items-center justify-center gap-1">
               <span className="text-3xl font-bold text-gray-900">₹</span>
               <input
@@ -82,12 +87,14 @@ const AddIncome = () => {
               >
                 <option value="">Select Category</option>
                 {categories.map((cat) => (
-                  <option key={cat} value={cat}>{cat}</option>
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
                 ))}
               </select>
               <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             </div>
-            
+
             <div className="relative opacity-70">
               <select
                 value={subcategory}
@@ -103,7 +110,9 @@ const AddIncome = () => {
 
           {/* Date Input */}
           <div className="space-y-2">
-            <label className="block text-base font-medium text-gray-700">Date</label>
+            <label className="block text-base font-medium text-gray-700">
+              Date
+            </label>
             <div className="relative">
               <input
                 type="date"
@@ -133,12 +142,12 @@ const AddIncome = () => {
                 <div
                   onClick={() => setIsRecurring(!isRecurring)}
                   className={`w-11 h-6 rounded-full p-1 cursor-pointer transition-colors ${
-                    isRecurring ? 'bg-indigo-500' : 'bg-gray-300'
+                    isRecurring ? "bg-indigo-500" : "bg-gray-300"
                   }`}
                 >
                   <div
                     className={`w-4 h-4 bg-white rounded-full shadow transition-transform ${
-                      isRecurring ? 'translate-x-5' : 'translate-x-0'
+                      isRecurring ? "translate-x-5" : "translate-x-0"
                     }`}
                   />
                 </div>
@@ -163,7 +172,9 @@ const AddIncome = () => {
           {/* Upload Receipt */}
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
             <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-            <p className="font-medium text-gray-600 mb-1">Upload Bill or Receipt</p>
+            <p className="font-medium text-gray-600 mb-1">
+              Upload Bill or Receipt
+            </p>
             <p className="text-sm text-gray-400">Tap to upload image</p>
           </div>
         </div>
