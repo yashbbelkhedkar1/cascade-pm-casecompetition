@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 interface LoanOffer {
   id: string;
@@ -65,24 +66,18 @@ export default function EducationLoans() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="flex items-center justify-between p-4">
-          <div className="flex items-center">
-            <button onClick={() => navigate(-1)} className="mr-3">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <h1 className="text-xl font-semibold">Education Loans</h1>
-          </div>
+      <Header
+        title="Education Loans"
+        showBackButton={true}
+        onBackClick={() => navigate(-1)}
+        rightContent={
           <button className="p-2">
             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z" />
             </svg>
           </button>
-        </div>
-      </div>
+        }
+      />
 
       <div className="p-4">
         {/* Search Bar */}

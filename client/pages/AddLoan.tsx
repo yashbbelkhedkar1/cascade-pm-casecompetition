@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 export default function AddLoan() {
   const navigate = useNavigate();
@@ -50,17 +51,11 @@ export default function AddLoan() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="flex items-center p-4">
-          <button onClick={() => navigate(-1)} className="mr-4">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <h1 className="text-xl font-semibold">Add New Loan</h1>
-        </div>
-      </div>
+      <Header
+        title="Add New Loan"
+        showBackButton={true}
+        onBackClick={() => navigate(-1)}
+      />
 
       <div className="p-4 space-y-6">
         {/* Basic Information */}
