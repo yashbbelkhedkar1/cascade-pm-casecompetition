@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTransactions } from "../context/TransactionContext";
+import Header from "../components/Header";
 
 interface Message {
   id: string;
