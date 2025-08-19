@@ -16,6 +16,32 @@ interface Notification {
 export default function Notifications() {
   const navigate = useNavigate();
 
+  const handleNotificationClick = (notification: Notification) => {
+    // Navigate to respective page based on notification type
+    switch (notification.type) {
+      case "reminder":
+        navigate("/payment-reminders");
+        break;
+      case "achievement":
+        navigate("/goals");
+        break;
+      case "transaction":
+        if (notification.message.includes("expense")) {
+          navigate("/expense-history");
+        } else if (notification.message.includes("Income") || notification.message.includes("Salary")) {
+          navigate("/income-history");
+        } else {
+          navigate("/");
+        }
+        break;
+      case "alert":
+        navigate("/analytics");
+        break;
+      default:
+        navigate("/");
+    }
+  };
+
   const notifications: Notification[] = [
     {
       id: "1",
