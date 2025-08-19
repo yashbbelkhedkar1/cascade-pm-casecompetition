@@ -31,6 +31,10 @@ import MyLoans from "./pages/MyLoans";
 import AddLoan from "./pages/AddLoan";
 import FixedIncome from "./pages/FixedIncome";
 import FixedExpense from "./pages/FixedExpense";
+import GoalDetails from "./pages/GoalDetails";
+import EditGoal from "./pages/EditGoal";
+import AddFixedExpense from "./pages/AddFixedExpense";
+import AddFixedIncome from "./pages/AddFixedIncome";
 
 function App() {
   return (
