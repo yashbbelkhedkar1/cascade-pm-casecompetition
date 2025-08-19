@@ -319,7 +319,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         <div className="p-4 border-t border-gray-200">
           <button
             onClick={() => navigate("/profile")}
-            className="w-full flex items-center px-4 py-3 rounded-xl hover:bg-gray-50 transition-colors"
+            className="w-full flex items-center px-4 py-3 rounded-xl hover:bg-gray-50 transition-colors mb-3"
           >
             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-3">
               <span className="text-white text-sm font-medium">J</span>
@@ -341,6 +341,31 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 d="M9 5l7 7-7 7"
               />
             </svg>
+          </button>
+
+          {/* Logout Button */}
+          <button
+            onClick={() => {
+              // Add logout logic here
+              console.log("Logout clicked");
+              onClose();
+            }}
+            className="w-full flex items-center px-4 py-3 rounded-xl hover:bg-red-50 transition-colors text-red-600"
+          >
+            <svg
+              className="w-5 h-5 mr-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+              />
+            </svg>
+            <span className="font-medium">Logout</span>
           </button>
         </div>
       </div>
