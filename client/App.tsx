@@ -81,6 +81,7 @@ function App() {
             <Route path="/add-goal" element={<AddGoal />} />
             <Route path="/add-fixed-expense" element={<AddFixedExpense />} />
             <Route path="/add-fixed-income" element={<AddFixedIncome />} />
+            <Route path="/notifications" element={<Notifications />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
