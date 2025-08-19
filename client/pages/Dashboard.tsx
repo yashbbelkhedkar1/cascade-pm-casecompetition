@@ -59,12 +59,44 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 max-w-md mx-auto relative">
       <Header
-        title="Dashboard"
+        title={
+          <div className="flex flex-col">
+            <div className="text-lg font-bold text-gray-900">CashCade</div>
+            <div className="text-sm text-gray-600">Home</div>
+          </div>
+        }
         rightContent={
-          <div className="w-9 h-9 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center relative">
-            <span className="text-white text-sm font-medium">J</span>
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
-              <div className="w-2 h-2 bg-white rounded-full"></div>
+          <div className="flex items-center gap-3">
+            {/* Notifications Icon */}
+            <Link
+              to="/notifications"
+              className="w-9 h-9 bg-gray-100 rounded-full flex items-center justify-center relative hover:bg-gray-200 transition-colors"
+            >
+              <svg
+                className="w-5 h-5 text-gray-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 17h5l-5 5-5-5h5v-5a7.81 7.81 0 0 0-15 0v5"
+                />
+              </svg>
+              {/* Notification badge */}
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
+                <span className="text-white text-xs font-bold">3</span>
+              </div>
+            </Link>
+
+            {/* Profile Avatar */}
+            <div className="w-9 h-9 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center relative">
+              <span className="text-white text-sm font-medium">J</span>
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+                <div className="w-2 h-2 bg-white rounded-full"></div>
+              </div>
             </div>
           </div>
         }
