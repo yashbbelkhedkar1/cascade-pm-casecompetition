@@ -36,6 +36,7 @@ import EditGoal from "./pages/EditGoal";
 import AddGoal from "./pages/AddGoal";
 import AddFixedExpense from "./pages/AddFixedExpense";
 import AddFixedIncome from "./pages/AddFixedIncome";
+import Notifications from "./pages/Notifications";
 
 function App() {
   return (
