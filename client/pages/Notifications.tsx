@@ -175,7 +175,8 @@ export default function Notifications() {
           {notifications.map((notification) => (
             <div
               key={notification.id}
-              className={`bg-white rounded-xl p-4 shadow-sm border transition-all hover:shadow-md ${
+              onClick={() => handleNotificationClick(notification)}
+              className={`bg-white rounded-xl p-4 shadow-sm border transition-all hover:shadow-md cursor-pointer ${
                 !notification.isRead ? "border-l-4 border-l-blue-500" : ""
               }`}
             >
