@@ -77,6 +77,7 @@ function App() {
             <Route path="/fixed-expense" element={<FixedExpense />} />
             <Route path="/goal-details/:id" element={<GoalDetails />} />
             <Route path="/edit-goal/:id" element={<EditGoal />} />
+            <Route path="/add-goal" element={<AddGoal />} />
             <Route path="/add-fixed-expense" element={<AddFixedExpense />} />
             <Route path="/add-fixed-income" element={<AddFixedIncome />} />
             <Route path="/profile" element={<Profile />} />
