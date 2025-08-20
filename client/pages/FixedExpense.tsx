@@ -78,7 +78,7 @@ export default function FixedExpense() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 max-w-md mx-auto relative">
       <Header title="Fixed Expenses" />
 
       <div className="p-4 space-y-6 pb-20">
