@@ -16,11 +16,17 @@ import { useTransactions, DateFilter } from "../context/TransactionContext";
 import { useState } from "react";
 
 const Dashboard = () => {
-  const { balance, totalIncome, totalExpenses, getRecentTransactions } =
+  const { balance, totalIncome, totalExpenses, getRecentTransactions, getTotalByDateFilter } =
     useTransactions();
+
+  const [expenseFilter, setExpenseFilter] = useState<DateFilter>("monthly");
+  const [incomeFilter, setIncomeFilter] = useState<DateFilter>("monthly");
 
   const recentExpenses = getRecentTransactions("expense", 3);
   const recentIncome = getRecentTransactions("income", 3);
+
+  const filteredExpenseTotal = getTotalByDateFilter("expense", expenseFilter);
+  const filteredIncomeTotal = getTotalByDateFilter("income", incomeFilter);
 
   // Helper function to get icon based on category
   const getCategoryIcon = (category: string) => {
