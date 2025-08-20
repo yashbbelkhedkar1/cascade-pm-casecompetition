@@ -11,7 +11,7 @@ export default function SplitExpenses() {
 
   if (currentView === "landing") {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 max-w-md mx-auto relative">
         <Header
           title="Split"
           showBackButton={true}
