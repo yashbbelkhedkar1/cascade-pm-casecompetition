@@ -274,6 +274,14 @@ export default function AddFixedExpense() {
           </button>
         </div>
       </div>
+
+      {/* Success Popup */}
+      <SuccessPopup
+        isOpen={showSuccessPopup}
+        title="Fixed Expense Added Successfully!"
+        message={`Your ${formData.subcategory || formData.category} fixed expense of ��${formData.amount} has been saved.`}
+        onClose={handleSuccessClose}
+      />
     </div>
   );
 }
