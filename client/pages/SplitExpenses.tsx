@@ -143,7 +143,7 @@ export default function SplitExpenses() {
 
   if (currentView === "main") {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 max-w-md mx-auto relative">
         <Header
           title="Split"
           showBackButton={true}
