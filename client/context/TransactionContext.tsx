@@ -322,6 +322,8 @@ export function TransactionProvider({ children }: { children: ReactNode }) {
     addTransaction,
     deleteTransaction,
     getRecentTransactions,
+    getFilteredTransactions,
+    getTotalByDateFilter,
   };
 
   return (
