@@ -18,7 +18,8 @@
     "start": "node dist/server/node-build.mjs",
     "test": "vitest --run",
     "format.fix": "prettier --write .",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "deploy": "cp CNAME dist/spa; cd dist/spa; cp index.html 200.html; surge .; cd -;"
   },
   "dependencies": {
     "dotenv": "^17.2.1",
