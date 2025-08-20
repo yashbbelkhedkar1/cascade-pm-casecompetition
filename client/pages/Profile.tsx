@@ -289,10 +289,6 @@ const Profile = () => {
                 {profileData.upiId}
               </span>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-gray-600">Account Type</span>
-              <span className="text-gray-900 font-medium">Premium</span>
-            </div>
           </div>
         </div>
 
