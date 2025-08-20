@@ -102,7 +102,7 @@ export default function PaymentReminders() {
 
   if (showNewReminder) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 max-w-md mx-auto relative">
         <Header
           title="New Payment Reminder"
           showBackButton={true}
