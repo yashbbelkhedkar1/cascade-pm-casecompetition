@@ -66,7 +66,7 @@ const Goals = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 max-w-md mx-auto relative">
       {/* Header with purple background */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600">
         <Header 
