@@ -241,6 +241,68 @@ export function TransactionProvider({ children }: { children: ReactNode }) {
       .slice(0, limit);
   };
 
+  const getFilteredTransactions = (type: "income" | "expense", filters: Partial<FilterOptions>) => {
+    let filtered = transactions.filter(t => t.type === type);
+
+    // Date filtering
+    if (filters.dateFilter) {
+      const { startDate, endDate } = getDateRangeForFilter(filters.dateFilter, filters.customDateRange);
+      filtered = filtered.filter(t => isDateInRange(t.date, startDate, endDate));
+    }
+
+    // Category filtering
+    if (filters.category) {
+      filtered = filtered.filter(t => t.category === filters.category);
+    }
+
+    // Subcategory filtering
+    if (filters.subcategory) {
+      filtered = filtered.filter(t => t.subcategory === filters.subcategory);
+    }
+
+    // Search query filtering
+    if (filters.searchQuery) {
+      const query = filters.searchQuery.toLowerCase();
+      filtered = filtered.filter(t =>
+        t.title.toLowerCase().includes(query) ||
+        t.category.toLowerCase().includes(query) ||
+        (t.subcategory && t.subcategory.toLowerCase().includes(query)) ||
+        (t.note && t.note.toLowerCase().includes(query))
+      );
+    }
+
+    // Sorting
+    if (filters.sortBy) {
+      filtered.sort((a, b) => {
+        let aValue: any;
+        let bValue: any;
+
+        if (filters.sortBy === "date") {
+          aValue = new Date(a.date).getTime();
+          bValue = new Date(b.date).getTime();
+        } else if (filters.sortBy === "amount") {
+          aValue = a.amount;
+          bValue = b.amount;
+        }
+
+        if (filters.sortOrder === "asc") {
+          return aValue - bValue;
+        } else {
+          return bValue - aValue;
+        }
+      });
+    }
+
+    return filtered;
+  };
+
+  const getTotalByDateFilter = (type: "income" | "expense", dateFilter: DateFilter, customRange?: { start: string; end: string }) => {
+    const { startDate, endDate } = getDateRangeForFilter(dateFilter, customRange);
+    return transactions
+      .filter(t => t.type === type && isDateInRange(t.date, startDate, endDate))
+      .reduce((sum, t) => sum + t.amount, 0);
+  };
+
   // Calculate totals
   const totalIncome = transactions
     .filter(t => t.type === "income")
