@@ -244,7 +244,6 @@ const AddExpense = () => {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 className="w-full h-12 px-3 pr-10 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                required
               />
               <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             </div>
