@@ -57,8 +57,13 @@ export default function AddFixedIncome() {
 
     // Here you would typically save the income data
     console.log("Saving fixed income:", formData);
-    
-    // Navigate back to fixed income list
+
+    // Show success popup
+    setShowSuccessPopup(true);
+  };
+
+  const handleSuccessClose = () => {
+    setShowSuccessPopup(false);
     navigate("/fixed-income");
   };
 
