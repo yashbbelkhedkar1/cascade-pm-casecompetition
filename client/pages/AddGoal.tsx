@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SuccessPopup from "../components/SuccessPopup";
 
 export default function AddGoal() {
   const navigate = useNavigate();
