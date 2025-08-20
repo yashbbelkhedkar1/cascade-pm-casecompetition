@@ -273,6 +273,14 @@ export default function AddFixedIncome() {
           </button>
         </div>
       </div>
+
+      {/* Success Popup */}
+      <SuccessPopup
+        isOpen={showSuccessPopup}
+        title="Fixed Income Added Successfully!"
+        message={`Your ${formData.subcategory || formData.category} fixed income of ₹${formData.amount} has been saved.`}
+        onClose={handleSuccessClose}
+      />
     </div>
   );
 }
