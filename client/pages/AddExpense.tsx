@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Calendar, ChevronDown, Upload } from "lucide-react";
 import { useTransactions } from "../context/TransactionContext";
 import Header from "../components/Header";
+import SuccessPopup from "../components/SuccessPopup";
 
 const AddExpense = () => {
   const navigate = useNavigate();
@@ -11,33 +12,132 @@ const AddExpense = () => {
   const [category, setCategory] = useState("");
   const [subcategory, setSubcategory] = useState("");
   const [date, setDate] = useState("");
-  const [isRecurring, setIsRecurring] = useState(false);
+  const [isFixedExpense, setIsFixedExpense] = useState(false);
+  const [frequency, setFrequency] = useState("");
   const [note, setNote] = useState("");
+  const [customExpenseName, setCustomExpenseName] = useState("");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const categories = [
-    "Food & Dining",
+    "Housing and Living Expenses",
+    "Food and Dining",
+    "Academic and Educational Costs",
     "Transportation",
-    "Shopping",
-    "Entertainment",
-    "Bills & Utilities",
-    "Healthcare",
-    "Education",
-    "Travel",
+    "Personal",
+    "Health Expenses",
+    "Social and Entertainment",
+    "Communication and Technology",
+    "Financial Obligations & Miscellaneous",
+    "Other Expenses"
   ];
+
+  const subcategories: Record<string, string[]> = {
+    "Housing and Living Expenses": [
+      "Rent",
+      "Electricity Bill",
+      "Water Bill", 
+      "Gas Bill",
+      "Household Supplies",
+      "Furnishings",
+      "Groceries",
+      "Laundry"
+    ],
+    "Food and Dining": [
+      "Groceries",
+      "Dining Out",
+      "Special Diet"
+    ],
+    "Academic and Educational Costs": [
+      "Tuition Fees",
+      "Application fees",
+      "Lab fees",
+      "Textbooks and Course Materials",
+      "Academic Supplies",
+      "Electronics"
+    ],
+    "Transportation": [
+      "Public Transport",
+      "Taxi",
+      "Fuel",
+      "Parking fees",
+      "Maintenance",
+      "Insurance",
+      "Bicycles Maintenance",
+      "Monthly Pass"
+    ],
+    "Personal": [
+      "Clothing",
+      "Footwear",
+      "Gifts",
+      "Personal Care"
+    ],
+    "Health Expenses": [
+      "Health insurance Premium",
+      "Medications",
+      "Gym Membership",
+      "Medical Fees",
+      "Insurance Premiums"
+    ],
+    "Social and Entertainment": [
+      "Movies",
+      "Concerts",
+      "Hobbies and Sports",
+      "OTT Subscriptions",
+      "Vacations"
+    ],
+    "Communication and Technology": [
+      "Mobile Phone Bills",
+      "Internet Bill",
+      "Accessories"
+    ],
+    "Financial Obligations & Miscellaneous": [
+      "Student loans",
+      "Credit repayments",
+      "EMIs",
+      "Emergency Fund Savings"
+    ],
+    "Other Expenses": [
+      "Custom Expense"
+    ]
+  };
+
+  const frequencyOptions = [
+    "Daily",
+    "Weekly", 
+    "Monthly",
+    "Quarterly",
+    "Yearly"
+  ];
+
+  const handleCategoryChange = (newCategory: string) => {
+    setCategory(newCategory);
+    setSubcategory(""); // Reset subcategory when category changes
+    setCustomExpenseName(""); // Reset custom name
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    const expenseTitle = subcategory === "Custom Expense" ? customExpenseName : (subcategory || category);
+    
     addTransaction({
       type: "expense",
-      title: `${category} Expense`,
+      title: expenseTitle,
       category,
-      subcategory,
+      subcategory: subcategory === "Custom Expense" ? customExpenseName : subcategory,
       amount: parseFloat(amount),
       date,
       note,
-      isRecurring,
-      paymentMethod: "UPI", // Default for now
+      isRecurring: isFixedExpense,
+      paymentMethod: "UPI",
+      frequency: isFixedExpense ? frequency : undefined,
     });
+    
+    setShowSuccessPopup(true);
+  };
+
+  const handleSuccessClose = () => {
+    setShowSuccessPopup(false);
     navigate("/");
   };
 
@@ -53,7 +153,7 @@ const AddExpense = () => {
         onSubmit={handleSubmit}
         className="flex flex-col h-[calc(100vh-80px)]"
       >
-        <div className="flex-1 px-4 py-6 space-y-6">
+        <div className="flex-1 px-4 py-6 space-y-6 overflow-y-auto">
           {/* Amount Input */}
           <div className="text-center py-4">
             <label className="block text-sm text-gray-600 mb-2">
@@ -82,7 +182,7 @@ const AddExpense = () => {
             <div className="relative">
               <select
                 value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                onChange={(e) => handleCategoryChange(e.target.value)}
                 className="w-full h-12 px-3 pr-10 border border-gray-300 rounded-lg bg-white text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 required
               >
@@ -96,30 +196,54 @@ const AddExpense = () => {
               <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             </div>
 
-            <div className="relative opacity-70">
+            {/* Subcategory Selection */}
+            <div className="relative">
               <select
                 value={subcategory}
                 onChange={(e) => setSubcategory(e.target.value)}
-                className="w-full h-12 px-3 pr-10 border border-gray-300 rounded-lg bg-white text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full h-12 px-3 pr-10 border border-gray-300 rounded-lg bg-white text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50"
                 disabled={!category}
+                required
               >
                 <option value="">Select Subcategory</option>
+                {category && subcategories[category]?.map((subcat) => (
+                  <option key={subcat} value={subcat}>
+                    {subcat}
+                  </option>
+                ))}
               </select>
               <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             </div>
+
+            {/* Custom Expense Name - Only show when "Custom Expense" is selected */}
+            {subcategory === "Custom Expense" && (
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Custom Expense Name *
+                </label>
+                <input
+                  type="text"
+                  value={customExpenseName}
+                  onChange={(e) => setCustomExpenseName(e.target.value)}
+                  placeholder="Enter expense name"
+                  className="w-full h-12 px-3 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  required
+                />
+              </div>
+            )}
           </div>
 
           {/* Date Input */}
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">
-              Date
+            <label className="block text-base font-medium text-gray-700">
+              Date *
             </label>
             <div className="relative">
               <input
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full h-13 px-3 pr-10 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full h-12 px-3 pr-10 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 required
               />
               <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -127,33 +251,58 @@ const AddExpense = () => {
           </div>
 
           {/* Fixed Expense Toggle */}
-          <div className="bg-gray-50 rounded-lg p-4">
-            <div className="flex items-center justify-between">
+          <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+            <div className="flex items-center justify-between mb-3">
               <div>
                 <h3 className="font-medium text-gray-900">Fixed Expense</h3>
-                <p className="text-sm text-gray-600">Recurring expense</p>
+                <p className="text-sm text-gray-600">Set up recurring expense</p>
               </div>
               <div className="relative">
                 <input
                   type="checkbox"
-                  checked={isRecurring}
-                  onChange={(e) => setIsRecurring(e.target.checked)}
+                  checked={isFixedExpense}
+                  onChange={(e) => setIsFixedExpense(e.target.checked)}
                   className="sr-only"
                 />
                 <div
-                  onClick={() => setIsRecurring(!isRecurring)}
+                  onClick={() => setIsFixedExpense(!isFixedExpense)}
                   className={`w-11 h-6 rounded-full p-1 cursor-pointer transition-colors ${
-                    isRecurring ? "bg-indigo-500" : "bg-gray-300"
+                    isFixedExpense ? "bg-red-500" : "bg-gray-300"
                   }`}
                 >
                   <div
                     className={`w-4 h-4 bg-white rounded-full shadow transition-transform ${
-                      isRecurring ? "translate-x-5" : "translate-x-0"
+                      isFixedExpense ? "translate-x-5" : "translate-x-0"
                     }`}
                   />
                 </div>
               </div>
             </div>
+
+            {/* Frequency Selection - Only show when Fixed Expense is enabled */}
+            {isFixedExpense && (
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Frequency *
+                </label>
+                <div className="relative">
+                  <select
+                    value={frequency}
+                    onChange={(e) => setFrequency(e.target.value)}
+                    className="w-full h-10 px-3 pr-8 border border-gray-300 rounded-lg bg-white text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-red-500"
+                    required={isFixedExpense}
+                  >
+                    <option value="">Select Frequency</option>
+                    {frequencyOptions.map((freq) => (
+                      <option key={freq} value={freq}>
+                        {freq}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Note Field */}
@@ -191,13 +340,21 @@ const AddExpense = () => {
             </Link>
             <button
               type="submit"
-              className="flex-1 h-12 px-4 bg-indigo-500 text-white font-medium rounded-lg hover:bg-indigo-600 transition-colors"
+              className="flex-1 h-12 px-4 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition-colors"
             >
               Save Expense
             </button>
           </div>
         </div>
       </form>
+
+      {/* Success Popup */}
+      <SuccessPopup
+        isOpen={showSuccessPopup}
+        title="Expense Added Successfully!"
+        message={`Your ${subcategory === "Custom Expense" ? customExpenseName : (subcategory || category)} expense of ₹${amount} has been recorded.${isFixedExpense ? ` Fixed expense will be auto-deducted ${frequency.toLowerCase()}.` : ''}`}
+        onClose={handleSuccessClose}
+      />
     </div>
   );
 };
