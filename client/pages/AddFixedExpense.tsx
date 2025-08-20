@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTransactions } from "../context/TransactionContext";
 import SuccessPopup from "../components/SuccessPopup";
 
 export default function AddFixedExpense() {
   const navigate = useNavigate();
+  const { addTransaction } = useTransactions();
   
   const [formData, setFormData] = useState({
     amount: "",
@@ -17,29 +19,29 @@ export default function AddFixedExpense() {
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const categories = [
-    "Housing",
-    "Utilities", 
+    "Housing and Living Expenses",
+    "Food and Dining", 
+    "Academic and Educational Costs",
     "Transportation",
-    "Food & Dining",
-    "Entertainment",
-    "Health & Fitness",
-    "Shopping",
-    "Education",
-    "Insurance",
-    "Other"
+    "Personal",
+    "Health Expenses",
+    "Social and Entertainment",
+    "Communication and Technology",
+    "Financial Obligations & Miscellaneous",
+    "Other Expenses"
   ];
 
-  const subcategories = {
-    "Housing": ["Rent", "Mortgage", "Property Tax", "Home Insurance"],
-    "Utilities": ["Electricity", "Water", "Gas", "Internet", "Phone"],
-    "Transportation": ["Fuel", "Public Transport", "Car Insurance", "Maintenance"],
-    "Food & Dining": ["Groceries", "Restaurants", "Food Delivery"],
-    "Entertainment": ["Movies", "Streaming", "Games", "Events"],
-    "Health & Fitness": ["Gym", "Medical", "Insurance", "Supplements"],
-    "Shopping": ["Clothing", "Electronics", "Home & Garden", "Personal Care"],
-    "Education": ["Books", "Courses", "Tuition", "Supplies"],
-    "Insurance": ["Life", "Health", "Car", "Home"],
-    "Other": ["Miscellaneous", "Gifts", "Donations"]
+  const subcategoriesByCategory = {
+    "Housing and Living Expenses": ["Rent", "Electricity Bill", "Water Bill", "Gas Bill", "Household Supplies", "Furnishings", "Groceries", "Laundry"],
+    "Food and Dining": ["Groceries", "Dining Out", "Special Diet"],
+    "Academic and Educational Costs": ["Tuition Fees", "Application fees", "Lab fees", "Textbooks and Course Materials", "Academic Supplies", "Electronics"],
+    "Transportation": ["Public Transport", "Taxi", "Fuel", "Parking fees", "Maintenance", "Insurance", "Bicycles Maintenance", "Monthly Pass"],
+    "Personal": ["Clothing", "Footwear", "Gifts", "Personal Care"],
+    "Health Expenses": ["Health insurance Premium", "Medications", "Gym Membership", "Medical Fees", "Insurance Premiums"],
+    "Social and Entertainment": ["Movies", "Concerts", "Hobbies and Sports", "OTT Subscriptions", "Vacations"],
+    "Communication and Technology": ["Mobile Phone Bills", "Internet Bill", "Accessories"],
+    "Financial Obligations & Miscellaneous": ["Student loans", "Credit repayments", "EMIs", "Emergency Fund Savings"],
+    "Other Expenses": ["Custom"]
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -47,6 +49,14 @@ export default function AddFixedExpense() {
       ...prev,
       [field]: value
     }));
+    
+    // Reset subcategory if category changes
+    if (field === "category") {
+      setFormData(prev => ({
+        ...prev,
+        subcategory: ""
+      }));
+    }
   };
 
   const handleSaveExpense = () => {
@@ -56,8 +66,18 @@ export default function AddFixedExpense() {
       return;
     }
 
-    // Here you would typically save the expense data
-    console.log("Saving fixed expense:", formData);
+    // Add to transactions
+    addTransaction({
+      type: "expense",
+      title: formData.subcategory,
+      category: formData.category,
+      subcategory: formData.subcategory,
+      amount: parseFloat(formData.amount),
+      date: formData.date,
+      note: formData.notes,
+      isRecurring: formData.frequency === "Recurrent",
+      paymentMethod: formData.paymentMode,
+    });
 
     // Show success popup
     setShowSuccessPopup(true);
@@ -69,23 +89,23 @@ export default function AddFixedExpense() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 max-w-md mx-auto relative">
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
         <div className="flex items-center justify-between p-4">
           <button
             onClick={() => navigate(-1)}
-            className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center"
+            className="w-10 h-10 flex items-center justify-center"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           
           <h1 className="text-xl font-semibold">Add Fixed Expense</h1>
           
-          <button className="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button className="w-10 h-10 flex items-center justify-center">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
             </svg>
           </button>
@@ -99,13 +119,13 @@ export default function AddFixedExpense() {
             Amount <span className="text-red-500">*</span>
           </label>
           <div className="relative">
-            <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">₹</span>
+            <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg">₹</span>
             <input
               type="number"
               value={formData.amount}
               onChange={(e) => handleInputChange("amount", e.target.value)}
               placeholder="0.00"
-              className="w-full pl-8 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white"
+              className="w-full pl-10 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white text-lg text-gray-400"
             />
           </div>
         </div>
@@ -119,7 +139,7 @@ export default function AddFixedExpense() {
             <select
               value={formData.category}
               onChange={(e) => handleInputChange("category", e.target.value)}
-              className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white appearance-none"
+              className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white appearance-none text-gray-700"
             >
               <option value="">Select Category</option>
               {categories.map((category) => (
@@ -144,10 +164,10 @@ export default function AddFixedExpense() {
               value={formData.subcategory}
               onChange={(e) => handleInputChange("subcategory", e.target.value)}
               disabled={!formData.category}
-              className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white appearance-none disabled:bg-gray-100"
+              className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white appearance-none disabled:bg-gray-100 text-gray-700"
             >
               <option value="">Select Subcategory</option>
-              {formData.category && subcategories[formData.category as keyof typeof subcategories]?.map((sub) => (
+              {formData.category && subcategoriesByCategory[formData.category as keyof typeof subcategoriesByCategory]?.map((sub) => (
                 <option key={sub} value={sub}>{sub}</option>
               ))}
             </select>
@@ -167,25 +187,39 @@ export default function AddFixedExpense() {
           <div className="flex gap-3">
             <button
               onClick={() => handleInputChange("paymentMode", "Cash")}
-              className={`flex-1 py-3 px-4 rounded-xl border transition-colors flex items-center justify-center gap-2 ${
+              className={`flex-1 py-4 px-4 rounded-xl border transition-colors flex items-center justify-center gap-2 ${
                 formData.paymentMode === "Cash"
-                  ? "border-green-500 bg-green-50 text-green-600"
-                  : "border-gray-200 bg-white text-gray-700"
+                  ? "border-gray-300 bg-white"
+                  : "border-gray-200 bg-white"
               }`}
             >
-              <span className="text-green-600">💵</span>
-              Cash
+              <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
+                formData.paymentMode === "Cash" ? "border-blue-500" : "border-gray-300"
+              }`}>
+                {formData.paymentMode === "Cash" && (
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                )}
+              </div>
+              <span className="text-green-600 text-lg">💵</span>
+              <span className="text-gray-700">Cash</span>
             </button>
             <button
               onClick={() => handleInputChange("paymentMode", "UPI")}
-              className={`flex-1 py-3 px-4 rounded-xl border transition-colors flex items-center justify-center gap-2 ${
+              className={`flex-1 py-4 px-4 rounded-xl border transition-colors flex items-center justify-center gap-2 ${
                 formData.paymentMode === "UPI"
-                  ? "border-blue-500 bg-blue-50 text-blue-600"
-                  : "border-gray-200 bg-white text-gray-700"
+                  ? "border-gray-300 bg-white"
+                  : "border-gray-200 bg-white"
               }`}
             >
-              <span className="text-blue-600">📱</span>
-              UPI
+              <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
+                formData.paymentMode === "UPI" ? "border-blue-500" : "border-gray-300"
+              }`}>
+                {formData.paymentMode === "UPI" && (
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                )}
+              </div>
+              <span className="text-blue-600 text-lg">📱</span>
+              <span className="text-gray-700">UPI</span>
             </button>
           </div>
         </div>
@@ -200,7 +234,8 @@ export default function AddFixedExpense() {
               type="date"
               value={formData.date}
               onChange={(e) => handleInputChange("date", e.target.value)}
-              className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white"
+              placeholder="dd/mm/yyyy"
+              className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white text-gray-700"
             />
             <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
               <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -218,23 +253,41 @@ export default function AddFixedExpense() {
           <div className="flex gap-3">
             <button
               onClick={() => handleInputChange("frequency", "One Time")}
-              className={`flex-1 py-3 px-4 rounded-xl border transition-colors ${
+              className={`flex-1 py-4 px-4 rounded-xl border transition-colors flex items-center justify-center gap-2 ${
                 formData.frequency === "One Time"
-                  ? "border-blue-500 bg-blue-50 text-blue-600"
-                  : "border-gray-200 bg-white text-gray-700"
+                  ? "border-blue-500 bg-blue-50"
+                  : "border-gray-200 bg-white"
               }`}
             >
-              One Time
+              <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
+                formData.frequency === "One Time" ? "border-blue-500" : "border-gray-300"
+              }`}>
+                {formData.frequency === "One Time" && (
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                )}
+              </div>
+              <span className={formData.frequency === "One Time" ? "text-blue-600" : "text-gray-700"}>
+                One Time
+              </span>
             </button>
             <button
               onClick={() => handleInputChange("frequency", "Recurrent")}
-              className={`flex-1 py-3 px-4 rounded-xl border transition-colors ${
+              className={`flex-1 py-4 px-4 rounded-xl border transition-colors flex items-center justify-center gap-2 ${
                 formData.frequency === "Recurrent"
-                  ? "border-blue-500 bg-blue-50 text-blue-600"
-                  : "border-gray-200 bg-white text-gray-700"
+                  ? "border-blue-500 bg-blue-50"
+                  : "border-gray-200 bg-white"
               }`}
             >
-              Recurrent
+              <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
+                formData.frequency === "Recurrent" ? "border-blue-500" : "border-gray-300"
+              }`}>
+                {formData.frequency === "Recurrent" && (
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                )}
+              </div>
+              <span className={formData.frequency === "Recurrent" ? "text-blue-600" : "text-gray-700"}>
+                Recurrent
+              </span>
             </button>
           </div>
         </div>
@@ -249,7 +302,7 @@ export default function AddFixedExpense() {
             onChange={(e) => handleInputChange("notes", e.target.value)}
             placeholder="Add any additional notes..."
             rows={4}
-            className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white resize-none"
+            className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white resize-none text-gray-700 placeholder-gray-400"
           />
         </div>
 
@@ -279,7 +332,7 @@ export default function AddFixedExpense() {
       <SuccessPopup
         isOpen={showSuccessPopup}
         title="Fixed Expense Added Successfully!"
-        message={`Your ${formData.subcategory || formData.category} fixed expense of ��${formData.amount} has been saved.`}
+        message={`Your ${formData.subcategory || formData.category} fixed expense of ₹${formData.amount} has been saved.`}
         onClose={handleSuccessClose}
       />
     </div>
