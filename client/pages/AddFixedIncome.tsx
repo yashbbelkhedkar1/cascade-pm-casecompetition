@@ -13,6 +13,7 @@ export default function AddFixedIncome() {
     frequency: "One Time",
     notes: ""
   });
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const categories = [
     "Salary",
