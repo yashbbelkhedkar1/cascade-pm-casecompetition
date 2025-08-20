@@ -11,6 +11,7 @@ export default function AddGoal() {
     desiredDate: "",
     icon: "🎯"
   });
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const goalIcons = [
     "🎯", "✈️", "🏠", "🚗", "💻", "📱", "🎓", "💍", "🛡️", "🎉", "💰", "🏖️"
