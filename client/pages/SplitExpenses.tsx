@@ -562,7 +562,7 @@ function CreateGroupFlow({ onBack }: { onBack: () => void }) {
 
 function GroupDetailView({ onBack }: { onBack: () => void }) {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 max-w-md mx-auto relative">
       <div className="bg-blue-600 text-white p-4">
         <div className="flex items-center">
           <button onClick={onBack} className="mr-3">
