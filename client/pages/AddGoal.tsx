@@ -33,8 +33,13 @@ export default function AddGoal() {
 
     // Here you would typically save the goal data
     console.log("Creating goal:", formData);
-    
-    // Navigate back to goals list
+
+    // Show success popup
+    setShowSuccessPopup(true);
+  };
+
+  const handleSuccessClose = () => {
+    setShowSuccessPopup(false);
     navigate("/goals");
   };
 
