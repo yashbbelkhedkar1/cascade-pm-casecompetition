@@ -42,6 +42,45 @@ interface TransactionContextType {
 
 const TransactionContext = createContext<TransactionContextType | undefined>(undefined);
 
+// Date utility functions
+const getDateRangeForFilter = (filter: DateFilter, customRange?: { start: string; end: string }) => {
+  const now = new Date();
+  let startDate: Date;
+  let endDate = new Date(now);
+
+  switch (filter) {
+    case "daily":
+      startDate = new Date(now);
+      startDate.setHours(0, 0, 0, 0);
+      endDate.setHours(23, 59, 59, 999);
+      break;
+    case "weekly":
+      startDate = new Date(now);
+      startDate.setDate(now.getDate() - 7);
+      break;
+    case "monthly":
+      startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+      break;
+    case "custom":
+      if (customRange) {
+        startDate = new Date(customRange.start);
+        endDate = new Date(customRange.end);
+      } else {
+        startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+      }
+      break;
+    default:
+      startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+  }
+
+  return { startDate, endDate };
+};
+
+const isDateInRange = (date: string, startDate: Date, endDate: Date) => {
+  const transactionDate = new Date(date);
+  return transactionDate >= startDate && transactionDate <= endDate;
+};
+
 // Sample initial data
 const initialTransactions: Transaction[] = [
   // Income
