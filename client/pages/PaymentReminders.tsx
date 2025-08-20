@@ -256,7 +256,7 @@ export default function PaymentReminders() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 max-w-md mx-auto relative">
       <Header
         title="Payment Reminders"
         rightContent={
