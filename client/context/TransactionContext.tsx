@@ -14,6 +14,20 @@ export interface Transaction {
   iconName?: string;
 }
 
+export type DateFilter = "daily" | "weekly" | "monthly" | "custom";
+export type SortBy = "date" | "amount";
+export type SortOrder = "asc" | "desc";
+
+export interface FilterOptions {
+  dateFilter: DateFilter;
+  customDateRange?: { start: string; end: string };
+  category?: string;
+  subcategory?: string;
+  searchQuery?: string;
+  sortBy: SortBy;
+  sortOrder: SortOrder;
+}
+
 interface TransactionContextType {
   transactions: Transaction[];
   balance: number;
