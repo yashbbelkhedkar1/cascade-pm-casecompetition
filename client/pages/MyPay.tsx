@@ -41,7 +41,7 @@ export default function MyPay() {
             className="w-full bg-green-600 text-white py-4 px-6 rounded-2xl font-semibold text-lg flex items-center justify-center gap-3 shadow-lg hover:bg-green-700 transition-colors"
           >
             <span className="text-2xl">💳</span>
-            View UPI Screen
+            Add UPI Details
           </button>
         </div>
 
