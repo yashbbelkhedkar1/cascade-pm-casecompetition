@@ -296,7 +296,10 @@ const Profile = () => {
         <div className="bg-white rounded-xl p-4 shadow-sm border">
           <h3 className="font-semibold text-gray-900 mb-4">Support</h3>
           <div className="space-y-3">
-            <button className="w-full flex items-center justify-between py-3 text-left">
+            <button
+              onClick={() => navigate("/wallet-ai")}
+              className="w-full flex items-center justify-between py-3 text-left hover:bg-gray-50 rounded-lg transition-colors"
+            >
               <span className="text-gray-700">Help & Support</span>
               <svg
                 className="w-5 h-5 text-gray-400"
