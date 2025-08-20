@@ -14,6 +14,7 @@ export default function AddFixedExpense() {
     frequency: "One Time",
     notes: ""
   });
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const categories = [
     "Housing",
