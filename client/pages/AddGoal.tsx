@@ -154,6 +154,14 @@ export default function AddGoal() {
           </button>
         </div>
       </div>
+
+      {/* Success Popup */}
+      <SuccessPopup
+        isOpen={showSuccessPopup}
+        title="Goal Created Successfully!"
+        message={`Your goal "${formData.name}" with target amount ₹${formData.targetAmount} has been created.`}
+        onClose={handleSuccessClose}
+      />
     </div>
   );
 }
