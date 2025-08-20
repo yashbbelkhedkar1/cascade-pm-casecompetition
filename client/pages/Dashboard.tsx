@@ -287,10 +287,15 @@ const Dashboard = () => {
           <div className="p-4 border-b">
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-semibold text-gray-900">Expenses</h2>
-              <select className="text-sm border rounded-lg px-3 py-1 bg-white">
-                <option>This Month</option>
-                <option>Last Month</option>
-                <option>This Year</option>
+              <select
+                className="text-sm border rounded-lg px-3 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={expenseFilter}
+                onChange={(e) => setExpenseFilter(e.target.value as DateFilter)}
+              >
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="custom">Custom Date</option>
               </select>
             </div>
           </div>
