@@ -12,7 +12,8 @@ import {
 } from "lucide-react";
 import BottomNavigation from "../components/BottomNavigation";
 import Header from "../components/Header";
-import { useTransactions } from "../context/TransactionContext";
+import { useTransactions, DateFilter } from "../context/TransactionContext";
+import { useState } from "react";
 
 const Dashboard = () => {
   const { balance, totalIncome, totalExpenses, getRecentTransactions } =
