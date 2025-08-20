@@ -36,6 +36,8 @@ interface TransactionContextType {
   addTransaction: (transaction: Omit<Transaction, "id">) => void;
   deleteTransaction: (id: string) => void;
   getRecentTransactions: (type: "income" | "expense", limit?: number) => Transaction[];
+  getFilteredTransactions: (type: "income" | "expense", filters: Partial<FilterOptions>) => Transaction[];
+  getTotalByDateFilter: (type: "income" | "expense", dateFilter: DateFilter, customRange?: { start: string; end: string }) => number;
 }
 
 const TransactionContext = createContext<TransactionContextType | undefined>(undefined);
