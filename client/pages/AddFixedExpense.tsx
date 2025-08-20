@@ -58,8 +58,13 @@ export default function AddFixedExpense() {
 
     // Here you would typically save the expense data
     console.log("Saving fixed expense:", formData);
-    
-    // Navigate back to fixed expenses list
+
+    // Show success popup
+    setShowSuccessPopup(true);
+  };
+
+  const handleSuccessClose = () => {
+    setShowSuccessPopup(false);
     navigate("/fixed-expense");
   };
 
