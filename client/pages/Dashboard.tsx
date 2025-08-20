@@ -261,19 +261,23 @@ const Dashboard = () => {
           <div className="flex-1 bg-white rounded-xl p-4 shadow-sm border">
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp className="w-3 h-3 text-green-500" />
-              <span className="text-sm text-gray-600">Income (30d)</span>
+              <span className="text-sm text-gray-600">
+                Income ({incomeFilter === "daily" ? "Today" : incomeFilter === "weekly" ? "7d" : incomeFilter === "monthly" ? "30d" : "Custom"})
+              </span>
             </div>
             <p className="text-xl font-bold text-gray-900">
-              ₹{totalIncome.toFixed(0)}
+              ₹{filteredIncomeTotal.toFixed(0)}
             </p>
           </div>
           <div className="flex-1 bg-white rounded-xl p-4 shadow-sm border">
             <div className="flex items-center gap-2 mb-2">
               <TrendingDown className="w-3 h-3 text-red-500" />
-              <span className="text-sm text-gray-600">Expense (30d)</span>
+              <span className="text-sm text-gray-600">
+                Expense ({expenseFilter === "daily" ? "Today" : expenseFilter === "weekly" ? "7d" : expenseFilter === "monthly" ? "30d" : "Custom"})
+              </span>
             </div>
             <p className="text-xl font-bold text-gray-900">
-              ₹{totalExpenses.toFixed(0)}
+              ₹{filteredExpenseTotal.toFixed(0)}
             </p>
           </div>
         </div>
