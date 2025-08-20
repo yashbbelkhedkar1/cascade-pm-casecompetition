@@ -33,7 +33,7 @@ export default function MyPay() {
             className="w-full bg-blue-600 text-white py-4 px-6 rounded-2xl font-semibold text-lg flex items-center justify-center gap-3 shadow-lg hover:bg-blue-700 transition-colors"
           >
             <span className="text-2xl">🔒</span>
-            View KYC Screen
+            Add KYC Details
           </button>
 
           <button
