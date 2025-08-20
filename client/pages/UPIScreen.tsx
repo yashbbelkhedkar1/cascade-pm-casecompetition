@@ -20,7 +20,7 @@ export default function UPIScreen() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 max-w-md mx-auto relative">
       {/* Header */}
       <div className="bg-white shadow-sm px-4 py-4 flex items-center justify-between">
         <button onClick={() => navigate(-1)}>
