@@ -95,7 +95,10 @@ export default function FixedExpense() {
         </div>
 
         {/* Add New Button */}
-        <button className="w-full bg-white rounded-xl p-4 shadow-sm border-2 border-dashed border-gray-200 hover:border-red-400 transition-colors">
+        <button
+          onClick={() => navigate("/add-fixed-expense")}
+          className="w-full bg-white rounded-xl p-4 shadow-sm border-2 border-dashed border-gray-200 hover:border-red-400 transition-colors"
+        >
           <div className="flex flex-col items-center text-gray-500 hover:text-red-600">
             <svg
               className="w-8 h-8 mb-2"
