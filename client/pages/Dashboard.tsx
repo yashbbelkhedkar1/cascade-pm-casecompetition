@@ -144,7 +144,7 @@ const Dashboard = () => {
               <div className="min-w-0 flex-1">
                 <p className="text-blue-100 text-sm mb-1">Total Balance</p>
                 <p className="text-xl sm:text-2xl font-bold truncate">
-                  ₹{balance.toFixed(2)}
+                  ₹ {Math.abs(balance).toFixed(2)}
                 </p>
               </div>
               <Wallet className="w-5 h-5 sm:w-6 sm:h-6 text-blue-100 flex-shrink-0 ml-3" />
